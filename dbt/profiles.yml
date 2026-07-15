@@ -1,14 +1,13 @@
-my_project_profile:  # Profile name (matches dbt_project.yml)
-  target: dev  # Default target to use
-  outputs:
-    dev: # Development environment
-      dataset: sdud-raw
-      job_execution_timeout_seconds: 300
-      job_retries: 1
-      keyfile: "{{ env_var('GCP_KEY_PATH') }}"
-      location: US
-      method: service-account
-      priority: interactive
-      project: "{{ env_var('GCP_PROJECT_ID') }}"
-      threads: 1
-      type: bigquery
+medicaid_data_pipeline: # this needs to match the profile in your dbt_project.yml file
+    target: dev
+    outputs:
+        dev:
+            type: bigquery
+            method: service-account
+            keyfile: "{{ env_var('GCP_KEY_PATH') }}" # replace this with the full path to your keyfile
+            project: "{{ env_var('GCP_PROJECT_ID') }}" # Replace this with your project id
+            dataset: "{{ env_var('GCP_DATASET') }}" # Replace this with dbt_your_name, e.g. dbt_bilbo
+            threads: 1
+            timeout_seconds: 300
+            location: US
+            priority: interactive
