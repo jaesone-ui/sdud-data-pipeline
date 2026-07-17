@@ -11,7 +11,7 @@ us_states_seed AS (
 distinct_states AS (
     SELECT DISTINCT(us_state)
     FROM sdud
-),
+)
 
 
 SELECT

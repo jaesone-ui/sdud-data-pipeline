@@ -14,15 +14,17 @@ models:
         tests:
           - not_null
           - relationships:
-              to: ref('dim_drug')
-              field: ndc
+              arguments:
+                to: ref('dim_drug')
+                field: ndc
       - name: us_state
         description: "The U.S. state associated with the SDUD record."
         tests:
           - not_null
           - relationships:
-              to: ref('dim_location')
-              field: us_state
+              arguments:
+                to: ref('dim_location')
+                field: us_state
   - name: fct_high_cost_drugs
     description: "This is the high cost drugs data mart model."
     columns:

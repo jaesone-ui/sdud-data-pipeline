@@ -7,6 +7,7 @@ renamed AS (
     SELECT 
         -- create a primary key by concatenating state, year, quarter, and ndc
         to_hex(md5(concat(
+            coalesce(utilization_type, '_null_'), '-',
             coalesce(state, '_null_'), '-',
             coalesce(cast(year AS string), '_null_'), '-',
             coalesce(cast(quarter AS string), '_null_'), '-',
