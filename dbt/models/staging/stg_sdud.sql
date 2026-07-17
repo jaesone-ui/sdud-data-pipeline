@@ -11,7 +11,7 @@ renamed AS (
             coalesce(cast(year AS string), '_null_'), '-',
             coalesce(cast(quarter AS string), '_null_'), '-',
             coalesce(ndc, '_null_')
-        ))) AS sdud_id
+        ))) AS sdud_id,
         utilization_type AS utilization_type,
         state AS us_state,
         ndc AS ndc,
@@ -21,7 +21,7 @@ renamed AS (
         year AS calendar_year,      
         quarter AS calendar_quarter,
         suppression_used AS suppression_used,
-        product_name AS product_name,
+        UPPER(TRIM(product_name)) AS product_name,
         units_reimbursed AS units_reimbursed,
         number_of_prescriptions AS number_of_prescriptions,
         total_amount_reimbursed AS total_amount_reimbursed,

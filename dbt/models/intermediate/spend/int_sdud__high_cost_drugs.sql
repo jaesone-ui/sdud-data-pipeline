@@ -7,7 +7,6 @@ drug_annuals AS (
     SELECT
         calendar_year,
         ndc,
-        MAX(product_name) AS product_name,
         SUM(medicaid_amount_reimbursed) AS reimbursed_per_drug
     FROM staging
     GROUP BY calendar_year, ndc
@@ -32,7 +31,6 @@ calculations AS (
 SELECT
     calendar_year,
     ndc,
-    product_name,
     reimbursed_per_drug,
     is_high_cost_drug,
     excess_amount

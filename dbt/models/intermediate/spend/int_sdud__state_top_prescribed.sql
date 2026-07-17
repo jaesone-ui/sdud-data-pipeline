@@ -8,8 +8,7 @@ drug_annuals AS (
         calendar_year,
         us_state,
         ndc,
-        MAX(product_name) AS product_name,
-        SUM(prescriptions) AS number_of_prescriptions
+        SUM(number_of_prescriptions) AS number_of_prescriptions
     FROM staging
     GROUP BY calendar_year, us_state, ndc
 ),

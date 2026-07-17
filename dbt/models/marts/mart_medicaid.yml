@@ -1,5 +1,0 @@
-version: 2
-
-models:
-  - name: marts_medicaid
-    description: "This is the Medicaid data mart model."
