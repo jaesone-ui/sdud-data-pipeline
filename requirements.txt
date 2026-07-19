@@ -1,4 +1,4 @@
 requests
 apache-airflow-providers-google
-dbt-bigquery
 dotenv-cli
+astronomer-cosmos

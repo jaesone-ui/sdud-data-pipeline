@@ -29,8 +29,11 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   medicaid_data_pipeline:
     staging:
+      +schema: staging
       +materialized: view
     intermediate:
+      +schema: intermediate
       +materialized: ephemeral
     marts:
+      +schema: marts
       +materialized: table

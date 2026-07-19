@@ -1,14 +1,17 @@
 import requests
+import os
 from google.cloud import storage
-from extract import extract_data
+from src.extract import extract_data
 
 def upload_blob(bucket_name, destination_blob_name, year):
-    """Uploads a file to the bucket."""
-    # bucket_name = "your-bucket-name"
-    # source_file_name = "local/path/to/file"
-    # destination_blob_name = "storage-object-name"
-
-    storage_client = storage.Client()
+    GCP_KEY = os.environ.get("GCP_KEY_PATH")
+    if not GCP_KEY:
+        raise ValueError("GCP_KEY_PATH not found in environment variables.")
+    if os.path.exists("/usr/local/airflow/"):
+        new_GCP_KEY = os.path.join("/usr/local/airflow", GCP_KEY)     
+        storage_client = storage.Client.from_service_account_json(new_GCP_KEY)
+    else:           
+        storage_client = storage.Client.from_service_account_json(GCP_KEY)
     bucket = storage_client.bucket(bucket_name)
     blob = bucket.blob(destination_blob_name)
     download_url = extract_data(year)
@@ -23,6 +26,7 @@ def upload_blob(bucket_name, destination_blob_name, year):
         print(f"Error occurred while uploading data for {year}: {e}")
         return None
 
+# used for local testing
 if __name__ == "__main__":
     bucket_name = input("Enter the GCS bucket name: ")
     destination_blob_name = input("Enter the destination blob name (e.g., folder/filename.csv): ")
