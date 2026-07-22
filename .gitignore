@@ -228,3 +228,6 @@ __marimo__/
 # Terraform state files
 *.tfstate
 *.tfstate.backup
+
+# Power BI files
+*.pbix
